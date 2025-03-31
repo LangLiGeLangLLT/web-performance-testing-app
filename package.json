@@ -9,7 +9,7 @@
     "lint": "next lint",
     "test": "playwright test",
     "test-ui": "playwright test --ui",
-    "test-report": "playwright show-report"
+    "show-report": "playwright show-report"
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.2",
