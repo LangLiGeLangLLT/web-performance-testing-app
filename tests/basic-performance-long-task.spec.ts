@@ -17,13 +17,12 @@ test('basic performance long task', async ({ page }) => {
 
       observer.observe({ type: 'longtask', buffered: true })
 
-      // Resolve promise if there haven't been long tasks
       setTimeout(() => {
         resolve(totalBlockingTime)
         observer.disconnect()
       }, 5000)
     })
-  }, 0)
+  })
 
-  console.log(totalBlockingTime) // 0
+  console.log(totalBlockingTime)
 })

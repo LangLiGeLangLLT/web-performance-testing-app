@@ -30,7 +30,7 @@ test('basic performance layout shift', async ({ page }) => {
         observer.disconnect()
       }, 5000)
     })
-  }, '0')
+  })
 
   console.log(cumulativeLayoutShift)
 })

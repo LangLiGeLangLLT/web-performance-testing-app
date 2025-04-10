@@ -7,7 +7,6 @@ test('basic performance largest contentful paint', async ({ page }) => {
     return new Promise<number>((resolve) => {
       const observer = new PerformanceObserver((l) => {
         const entries = l.getEntries()
-        // the last entry is the largest contentful paint
         const largestPaintEntry = entries.at(-1)
         resolve(largestPaintEntry?.startTime || 0)
         observer.disconnect()

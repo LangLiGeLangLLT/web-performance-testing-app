@@ -6,5 +6,6 @@ test('basic performance paint timing', async ({ page }) => {
   const paintTiming = await page.evaluate(() =>
     window.performance.getEntriesByType('paint')
   )
+  
   console.log(paintTiming)
 })
