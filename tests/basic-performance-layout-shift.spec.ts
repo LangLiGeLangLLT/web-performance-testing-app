@@ -3,8 +3,8 @@ import { test } from '@playwright/test'
 test('basic performance layout shift', async ({ page }) => {
   await page.goto('https://www.baidu.com/')
 
-  const cumulativeLayoutShift: string = await page.evaluate(() => {
-    return new Promise((resolve) => {
+  const cumulativeLayoutShift = await page.evaluate(() => {
+    return new Promise<number>((resolve) => {
       let CLS = 0
 
       const observer = new PerformanceObserver((l) => {
@@ -16,7 +16,7 @@ test('basic performance layout shift', async ({ page }) => {
           }
         })
 
-        resolve(CLS.toString())
+        resolve(CLS)
         observer.disconnect()
       })
 
@@ -26,11 +26,11 @@ test('basic performance layout shift', async ({ page }) => {
       })
 
       setTimeout(() => {
-        resolve('0') // 超时强制返回0
+        resolve(0)
         observer.disconnect()
       }, 5000)
     })
   }, '0')
 
-  console.log(parseFloat(cumulativeLayoutShift)) // 0.0001672498
+  console.log(cumulativeLayoutShift)
 })

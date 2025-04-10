@@ -3,7 +3,7 @@ import { test } from '@playwright/test'
 test('basic performance long task', async ({ page }) => {
   await page.goto('https://www.baidu.com/')
 
-  const totalBlockingTime: number = await page.evaluate(() => {
+  const totalBlockingTime = await page.evaluate(() => {
     return new Promise<number>((resolve) => {
       let totalBlockingTime = 0
       const observer = new PerformanceObserver(function (list) {
@@ -25,5 +25,5 @@ test('basic performance long task', async ({ page }) => {
     })
   }, 0)
 
-  console.log(parseFloat(totalBlockingTime.toString())) // 0
+  console.log(totalBlockingTime) // 0
 })
