@@ -1,6 +1,6 @@
 import { test } from '@playwright/test'
 
-test('basic performance largest contentful paint', async ({ page }) => {
+test('LCP', async ({ page }) => {
   await page.goto('https://www.baidu.com/')
 
   const largestContentfulPaint = await page.evaluate(() => {

@@ -1,6 +1,6 @@
 import { test } from '@playwright/test'
 
-test('basic performance layout shift', async ({ page }) => {
+test('CLS', async ({ page }) => {
   await page.goto('https://www.baidu.com/')
 
   const cumulativeLayoutShift = await page.evaluate(() => {

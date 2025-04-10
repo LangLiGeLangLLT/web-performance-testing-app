@@ -1,6 +1,6 @@
 import { test } from '@playwright/test'
 
-test('basic performance emulation', async ({ page }) => {
+test('Emulation', async ({ page }) => {
   const client = await page.context().newCDPSession(page)
   await client.send('Network.enable')
   await client.send('Network.emulateNetworkConditions', {

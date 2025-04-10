@@ -1,6 +1,6 @@
 import { test } from '@playwright/test'
 
-test('basic performance long task', async ({ page }) => {
+test('TBT', async ({ page }) => {
   await page.goto('https://www.baidu.com/')
 
   const totalBlockingTime = await page.evaluate(() => {

@@ -1,6 +1,6 @@
 import { test } from '@playwright/test'
 
-test('basic performance resource', async ({ page }) => {
+test('Resource', async ({ page }) => {
   await page.goto('https://www.baidu.com/')
 
   const resourceTiming = await page.evaluate(() =>
