@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 
 test('CLS', async ({ page }) => {
-  await page.goto('https://www.baidu.com/')
+  await page.goto('https://www.baidu.com/', { waitUntil: 'networkidle' })
 
   const cumulativeLayoutShift = await page.evaluate(() => {
     return new Promise<number>((resolve) => {

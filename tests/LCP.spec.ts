@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 
 test('LCP', async ({ page }) => {
-  await page.goto('https://www.baidu.com/')
+  await page.goto('https://www.baidu.com/', { waitUntil: 'networkidle' })
 
   const largestContentfulPaint = await page.evaluate(() => {
     return new Promise<number>((resolve) => {
