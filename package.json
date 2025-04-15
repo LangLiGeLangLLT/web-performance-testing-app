@@ -9,7 +9,9 @@
     "lint": "next lint",
     "test": "playwright test",
     "test-ui": "playwright test --ui",
-    "show-report": "playwright show-report"
+    "show-report": "playwright show-report",
+    "lighthouse:json": "lighthouse https://www.baidu.com/ --output=json --output-path=lighthouse-report.json --chrome-flags=--headless --preset=desktop",
+    "lighthouse:html": "lighthouse https://www.baidu.com/ --output=html --output-path=lighthouse-report.html --chrome-flags=--headless --preset=desktop"
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.2",
@@ -30,6 +32,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.25",
+    "lighthouse": "^12.5.1",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
