@@ -1,13 +1,14 @@
 import test from '@playwright/test'
-import lighthouse from 'lighthouse'
-import { launch } from 'chrome-launcher'
 import fs from 'fs'
 
 test('lighthouse json', async () => {
+  const { launch } = await import('chrome-launcher')
+  const lighthouse = await import('lighthouse')
+
   const chrome = await launch({
     chromeFlags: ['--headless'],
   })
-  const results = await lighthouse(
+  const results = await lighthouse.default(
     'https://www.baidu.com',
     {
       output: 'json',
@@ -40,10 +41,13 @@ test('lighthouse json', async () => {
 })
 
 test('lighthouse html', async () => {
+  const { launch } = await import('chrome-launcher')
+  const lighthouse = await import('lighthouse')
+
   const chrome = await launch({
     chromeFlags: ['--headless'],
   })
-  const results = await lighthouse(
+  const results = await lighthouse.default(
     'https://www.baidu.com',
     {
       output: 'html',
