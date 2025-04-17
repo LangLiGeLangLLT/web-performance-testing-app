@@ -1,38 +1,35 @@
 'use client'
 
-import { Data } from '@/types'
 import { Button } from 'antd'
 import React from 'react'
 
 export default function Content() {
-  const [result, setResult] = React.useState<Data[]>([])
+  const [isLoading, setIsLoading] = React.useState(false)
   const worker = React.useRef<Worker>(
     new Worker(new URL('./worker.ts', import.meta.url))
   )
 
   const processData = async () => {
-    const data = Array.from({ length: 1e5 }, (_, i) => ({
-      id: i,
-      value: Math.random(),
-    }))
-    const start = performance.now()
+    setIsLoading(true)
+    setTimeout(() => {
+      const start = performance.now()
 
-    worker.current.postMessage(data)
+      worker.current.postMessage(0)
 
-    worker.current.onmessage = (e) => {
-      console.log('Async Time:', performance.now() - start)
-      setResult(e.data)
-    }
+      worker.current.onmessage = () => {
+        console.log('Async Time:', performance.now() - start)
+        setIsLoading(false)
+      }
+    }, 200)
   }
 
   return (
     <>
       <div className="space-y-4">
+        <div>Webworker</div>
         <div>
           <Button type="primary" onClick={processData}>
-            {result.length
-              ? `Processed ${result.length} items`
-              : 'Process Data'}
+            Process Data
           </Button>
         </div>
         <div>
@@ -40,6 +37,7 @@ export default function Content() {
             Hello
           </Button>
         </div>
+        {isLoading && <div>Processing...</div>}
       </div>
     </>
   )
